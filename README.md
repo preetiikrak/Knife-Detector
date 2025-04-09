@@ -39,5 +39,5 @@ HTML5/CSS3	         Frontend layout and styling
 JavaScript	         Image handling & classification
 TensorFlow.js	       Client-side ML framework
 MobileNet	           Pre-trained CNN model
-Choreo	             Static web hosting (optional)
+Choreo	             Static web hosting
 
