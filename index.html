@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knife Detector</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Knife Detector</h1>
+        <input type="file" id="fileInput" accept="image/*">
+        <img id="uploadedImage" class="hidden" width="300">
+        <p id="status">Upload an image to classify</p>
+        <button id="classifyBtn" class="hidden">Classify Image</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        let model;
+        document.addEventListener("DOMContentLoaded", async () => {
+            model = await mobilenet.load();
+            document.getElementById("status").innerText = "Model Loaded. Select an image";
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const img = document.getElementById('uploadedImage');
+            img.src = URL.createObjectURL(file);
+            img.classList.remove("hidden");
+            document.getElementById("classifyBtn").classList.remove("hidden");
+            document.getElementById("result").innerText = "";
+        });
+
+        document.getElementById("classifyBtn").addEventListener("click", async () => {
+            const img = document.getElementById("uploadedImage");
+            document.getElementById("status").innerText = "Classifying...";
+            const predictions = await model.classify(img);
+            console.log(predictions);
+
+            const knifeKeywords = ["knife", "cleaver", "chopper", "cutlery", "dagger", "blade"];
+
+            const knifeDetected = predictions.some(pred => 
+                knifeKeywords.some(keyword => pred.className.toLowerCase().includes(keyword)) && 
+                pred.probability > 0.2  // Lower threshold to 0.2
+            );
+
+            //const knifeDetected = predictions.some(pred => pred.className.toLowerCase().includes("knife") && pred.probability > 0.5);
+            document.getElementById("result").innerText = knifeDetected ? "It's a Knife" : "It's not a Knife";
+            document.getElementById("status").innerText = "Classification Complete.";
+        });
+    </script>
+</body>

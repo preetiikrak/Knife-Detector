@@ -1,0 +1,82 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+}
+
+/* Container */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    margin: auto;
+}
+
+/* Title */
+h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* File Input */
+input[type="file"] {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+input[type="file"]:hover {
+    background: #ddd;
+}
+
+/* Image Styling */
+img {
+    margin-top: 20px;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Classification Button */
+button {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #e84118;
+}
+
+/* Status & Result Text */
+#status {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+#result {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: yellow;
+}
+
+/* Hide Elements */
+.hidden {
+    display: none;
+}
